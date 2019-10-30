@@ -8,20 +8,16 @@ function cadastrarProduto($nomeProduto, $categProduto, $descProduto, $qtdeProdut
         $produtos[] = ["nome"=>$nomeProduto, "categ"=>$categProduto, "desc"=>$descProduto, "qtde"=>$qtdeProduto, "preco"=>$precoProduto, "img"=>$imgProduto];
         $json = json_encode($produtos);
         $sucesso = file_put_contents($nomeArquivo, $json);
-        if($sucesso){
-            return "Produto cadastrado com sucesso.";
-        } else{
-            return "Favor preencher corretamente todos os campos.";
-        }   
-        var_dump($produtos);
+        // if($sucesso){
+        //     return "Produto cadastrado com sucesso.";
+        // } else{
+        //     return "Favor preencher corretamente todos os campos.";
+        // }   
     }else{
         $produtos = [];
         $produtos[] = ["nome"=>$nomeProduto, "categ"=>$categProduto, "desc"=>$descProduto, "qtde"=>$qtdeProduto, "preco"=>$precoProduto, "img"=>$imgProduto];
-        // validacao da ordem dos produtos na array acima
-        // var_dump($produtos);
         
         $json = json_encode($produtos);
-        // var_dump($json); - apenas validação se o código está funcionando até este ponto
         
         $sucesso = file_put_contents($nomeArquivo, $json);
         if($sucesso){
@@ -34,23 +30,13 @@ function cadastrarProduto($nomeProduto, $categProduto, $descProduto, $qtdeProdut
 
 
 if($_POST){
-    // valida para verificar configuração de imagem e exit para parar a execução do PHP
-    // var_dump($_FILES);
-    // exit;
-
     $nomeImg = $_FILES["imgProduto"]["name"];
     $localTmp = $_FILES["imgProduto"]["tmp_name"];   
     $dataAtual = date("d-m-y");
     $caminhoSalvo = "img/".$dataAtual.$nomeImg;
-
     $sucesso = move_uploaded_file($localTmp, $caminhoSalvo);
-    // exit;
-    // echo cadastrarProduto($_POST["nomeProduto"], $_POST["descProduto"], $_POST["precoProduto"], $_POST["imgProduto"]);
-   
-    echo cadastrarProduto($_POST["nomeProduto"], $_POST["categProduto"], $_POST["descProduto"]. $_POST["qtdeProduto"], $_POST["precoProduto"], $caminhoSalvo);
+    echo cadastrarProduto($_POST["nomeProduto"], $_POST["categProduto"], $_POST["descProduto"], $_POST["qtdeProduto"], $_POST["precoProduto"], $caminhoSalvo);
 }
-
-
 
 ?>
 
@@ -68,7 +54,7 @@ if($_POST){
 </head>
 
 <body>
-    <!-- <?php include_once("header.php"); ?> -->
+    <?php include_once("variaveis.php"); ?>
     <main class="container">
         <div class="row">
             <div class="col-6 mt-5">
@@ -83,7 +69,7 @@ if($_POST){
 
                         <div class="form-group">
                             <label for="nomeProduto">Nome</label>
-                            <input type="text" class="form-control" name="nomeProduto" placeholder="" />
+                            <input type="text" class="form-control" name="nomeProduto"/>
                         </div>
                         <div class="form-group">
                             <label for="categProduto">Categoria</label>
@@ -98,27 +84,27 @@ if($_POST){
 
                         <div class="form-group">
                             <label for="descProduto">Descrição</label>
-                            <!-- <textarea class="form-control" name="descProduto" id="descProduto" placeholder="" > -->
-                            <input type="text" class="form-control" name="descProduto" placeholder="" />
+                            <textarea class="form-control noresize" name="descProduto" id="descProduto" placeholder="" ></textarea>
+                            <!-- <input type="text" class="form-control " name="descProduto"/> -->
                         </div>
 
                         <div class="form-group">
                             <label for="qtdeProduto">Quantidade</label>
-                            <input type="number" class="form-control" name="qtdeProduto" placeholder="" />
+                            <input type="number" class="form-control" name="qtdeProduto"/>
                         </div>
                     
                         <div class="form-group">
                             <label for="precoProduto">Preço</label>
-                            <input type="number" class="form-control" name="precoProduto" placeholder="" />
+                            <input type="number" class="form-control" name="precoProduto"/>
                         </div>
 
                         <div class="form-group">
                             <label for="imgProduto">Foto do produto</label>
                             <input type="file" class="form-control-file" name="imgProduto" placeholder="" />
                         </div>
-
-                        <button class="btn btn-success d-flex justify-content-flex-end">Enviar</button>
-
+                        <div class="text-right">
+                            <button class="btn btn-primary">Enviar</button>
+                        </div>
                     </form>
                 </div>
             </div>
