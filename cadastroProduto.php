@@ -8,11 +8,6 @@ function cadastrarProduto($nomeProduto, $categProduto, $descProduto, $qtdeProdut
         $produtos[] = ["nome"=>$nomeProduto, "categ"=>$categProduto, "desc"=>$descProduto, "qtde"=>$qtdeProduto, "preco"=>$precoProduto, "img"=>$imgProduto];
         $json = json_encode($produtos);
         $sucesso = file_put_contents($nomeArquivo, $json);
-        // if($sucesso){
-        //     return "Produto cadastrado com sucesso.";
-        // } else{
-        //     return "Favor preencher corretamente todos os campos.";
-        // }   
     }else{
         $produtos = [];
         $produtos[] = ["nome"=>$nomeProduto, "categ"=>$categProduto, "desc"=>$descProduto, "qtde"=>$qtdeProduto, "preco"=>$precoProduto, "img"=>$imgProduto];
@@ -27,7 +22,6 @@ function cadastrarProduto($nomeProduto, $categProduto, $descProduto, $qtdeProdut
         }   
     }
 }
-
 
 if($_POST){
     $nomeImg = $_FILES["imgProduto"]["name"];
@@ -55,13 +49,41 @@ if($_POST){
 
 <body>
     <?php include_once("variaveis.php"); ?>
+
     <main class="container">
+
         <div class="row">
-            <div class="col-6 mt-5">
+            <div class="col-7 mt-5">
                 <h1>Todos os produtos</h1>
             </div>
 
-            <div class="col-6 mt-5">
+            <?php if(isset($produtos) && $produtos != []) { ?>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope='col'>Nome</th>
+                        <th scope='col'>Categoria</th>
+                        <th scope='col'>Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($produtos as $produto){ ?>
+                    <tr>
+                        <td></td>
+                        <td><?= $produto['nome']; ?></td>
+                        <td><?= $produto['categoria']; ?></td>
+                        <td><?= "R$ ".$produto['preco']; ?></td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+            <?php }else{
+                echo "<h3>Não há produtos disponíveis no momento.</h3>";
+            }
+            ?>
+
+
+            <div class="col-5 mt-5">
                 <h2>Cadastrar Produto</h2>
 
                 <div class="font-weight-bold">
@@ -69,7 +91,7 @@ if($_POST){
 
                         <div class="form-group">
                             <label for="nomeProduto">Nome</label>
-                            <input type="text" class="form-control" name="nomeProduto"/>
+                            <input type="text" class="form-control" name="nomeProduto" />
                         </div>
                         <div class="form-group">
                             <label for="categProduto">Categoria</label>
@@ -84,18 +106,19 @@ if($_POST){
 
                         <div class="form-group">
                             <label for="descProduto">Descrição</label>
-                            <textarea class="form-control noresize" name="descProduto" id="descProduto" placeholder="" ></textarea>
+                            <textarea class="form-control noresize" name="descProduto" id="descProduto"
+                                placeholder=""></textarea>
                             <!-- <input type="text" class="form-control " name="descProduto"/> -->
                         </div>
 
                         <div class="form-group">
                             <label for="qtdeProduto">Quantidade</label>
-                            <input type="number" class="form-control" name="qtdeProduto"/>
+                            <input type="number" class="form-control" name="qtdeProduto" />
                         </div>
-                    
+
                         <div class="form-group">
                             <label for="precoProduto">Preço</label>
-                            <input type="number" class="form-control" name="precoProduto"/>
+                            <input type="number" class="form-control" name="precoProduto" />
                         </div>
 
                         <div class="form-group">
