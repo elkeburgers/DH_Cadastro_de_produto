@@ -77,32 +77,36 @@ if($_POST){
 
             <div class="col-6 mt-5">
                 <h2>Cadastrar Produto</h2>
+
                 <div class="font-weight-bold">
                     <form action="" method="post" enctype="multipart/form-data">
+
                         <div class="form-group">
                             <label for="nomeProduto">Nome</label>
                             <input type="text" class="form-control" name="nomeProduto" placeholder="" />
                         </div>
-
-                        <div class="form-group" placeholder="Selecione uma categoria" readonly>
+                        <div class="form-group">
                             <label for="categProduto">Categoria</label>
-                            <select class="form-control" id="categProduto">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <select class="form-control" id="categProduto" name="categProduto">
+                                <option selected>Selecione uma categoria</option>
+                                <option value="surf">Surf</option>
+                                <option value="standuppadle">Stand Up Paddle</option>
+                                <option value="windsurf">Windsurf</option>
+                                <option value="kitesurf">Kitesurf</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="descProduto">Descrição</label>
+                            <!-- <textarea class="form-control" name="descProduto" id="descProduto" placeholder="" > -->
                             <input type="text" class="form-control" name="descProduto" placeholder="" />
                         </div>
+
                         <div class="form-group">
                             <label for="qtdeProduto">Quantidade</label>
                             <input type="number" class="form-control" name="qtdeProduto" placeholder="" />
                         </div>
+                    
                         <div class="form-group">
                             <label for="precoProduto">Preço</label>
                             <input type="number" class="form-control" name="precoProduto" placeholder="" />
@@ -110,7 +114,7 @@ if($_POST){
 
                         <div class="form-group">
                             <label for="imgProduto">Foto do produto</label>
-                            <input type="file" class="form-control" name="imgProduto" placeholder="" />
+                            <input type="file" class="form-control-file" name="imgProduto" placeholder="" />
                         </div>
 
                         <button class="btn btn-success d-flex justify-content-flex-end">Enviar</button>
