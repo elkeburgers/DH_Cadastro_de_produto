@@ -56,9 +56,9 @@ if($_POST){
 
     <main class="container">
 
-        <div class="row">
+        <div class="row p-4">
             <div class="col-7 mt-5">
-                <h1>Todos os produtos</h1>
+                <h1 class='pb-3'>Todos os produtos</h1>
             </div>
 
             <table class="table">
@@ -74,7 +74,7 @@ if($_POST){
                     <?php foreach($produtos as $produto){ ?>
                     <tr>
                         <td></td>
-                        <td><?= $produto['nome']; ?></td>
+                        <td><a href='produto.php?nome=<?= $produto['nome']; ?>'><?= $produto['nome']; ?></td>
                         <td><?= $produto['categ']; ?></td>
                         <td><?= "R$ ".$produto['preco']; ?></td>
                     </tr>
