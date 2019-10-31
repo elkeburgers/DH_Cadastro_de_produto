@@ -75,7 +75,7 @@ if($_POST){
                     <tr>
                         <td></td>
                         <td><?= $produto['nome']; ?></td>
-                        <td><?= $produto['categoria']; ?></td>
+                        <td><?= $produto['categ']; ?></td>
                         <td><?= "R$ ".$produto['preco']; ?></td>
                     </tr>
                     <?php } ?>
@@ -94,11 +94,11 @@ if($_POST){
 
                         <div class="form-group">
                             <label for="nomeProduto">Nome</label>
-                            <input type="text" class="form-control" name="nomeProduto" />
+                            <input type="text" class="form-control" name="nomeProduto" required/>
                         </div>
                         <div class="form-group">
                             <label for="categProduto">Categoria</label>
-                            <select class="form-control" id="categProduto" name="categProduto">
+                            <select class="form-control" id="categProduto" name="categProduto" required>
                                 <option selected>Selecione uma categoria</option>
                                 <option value="surf">Surf</option>
                                 <option value="standuppadle">Stand Up Paddle</option>
@@ -110,23 +110,23 @@ if($_POST){
                         <div class="form-group">
                             <label for="descProduto">Descrição</label>
                             <textarea class="form-control noresize" name="descProduto" id="descProduto"
-                                placeholder=""></textarea>
+                                placeholder="" required></textarea>
                             <!-- <input type="text" class="form-control " name="descProduto"/> -->
                         </div>
 
                         <div class="form-group">
                             <label for="qtdeProduto">Quantidade</label>
-                            <input type="number" class="form-control" name="qtdeProduto" />
+                            <input type="number" class="form-control" name="qtdeProduto" required/>
                         </div>
 
                         <div class="form-group">
                             <label for="precoProduto">Preço</label>
-                            <input type="number" class="form-control" name="precoProduto" />
+                            <input type="number" class="form-control" name="precoProduto" required/>
                         </div>
 
                         <div class="form-group">
                             <label for="imgProduto">Foto do produto</label>
-                            <input type="file" class="form-control-file" name="imgProduto" placeholder="" />
+                            <input type="file" class="form-control-file" name="imgProduto" placeholder="" required/>
                         </div>
                         <div class="text-right">
                             <button class="btn btn-primary">Enviar</button>
