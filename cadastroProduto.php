@@ -9,7 +9,7 @@ function cadastrarProduto($nomeProduto, $categProduto, $descProduto, $qtdeProdut
         $json = json_encode($produtos);
         $sucesso = file_put_contents($nomeArquivo, $json);
         if($sucesso){
-            return "Produto cadastrado com sucesso.";
+            return "";
         } else{
             return "Não foi possivel realizar o cadastro.";
         }   
@@ -20,7 +20,7 @@ function cadastrarProduto($nomeProduto, $categProduto, $descProduto, $qtdeProdut
         $json = json_encode($produtos);
         $sucesso = file_put_contents($nomeArquivo, $json);
         if($sucesso){
-            return "Produto cadastrado com sucesso.";
+            return "";
         } else{
             return "Não foi possivel realizar o cadastro.";
         }   
@@ -30,7 +30,7 @@ function cadastrarProduto($nomeProduto, $categProduto, $descProduto, $qtdeProdut
 if($_POST){
     $nomeImg = $_FILES["imgProduto"]["name"];
     $localTmp = $_FILES["imgProduto"]["tmp_name"];   
-    $dataAtual = date("d-m-y");
+    $dataAtual = date("d-m-y_H_i_s_");
     $caminhoSalvo = "img/".$dataAtual.$nomeImg;
     $sucesso = move_uploaded_file($localTmp, $caminhoSalvo);
     echo cadastrarProduto($_POST["nomeProduto"], $_POST["categProduto"], $_POST["descProduto"], $_POST["qtdeProduto"], $_POST["precoProduto"], $caminhoSalvo);
@@ -62,14 +62,15 @@ if($_POST){
             </div>
 
             <table class="table">
-                <thead>
+                <thead class='col-7'>
                     <tr>
                         <th scope='col'>Nome</th>
                         <th scope='col'>Categoria</th>
                         <th scope='col'>Preço</th>
                     </tr>
                 </thead>
-                <tbody>
+
+                <tbody class='col-7'>
                     <?php if(isset($produtos) && $produtos != []) { ?>
                     <?php foreach($produtos as $produto){ ?>
                     <tr>
@@ -81,60 +82,61 @@ if($_POST){
                     <?php } ?>
                 </tbody>
             </table>
+
             <?php }else{ ?>
-                <h3>Não há produtos cadastrados no momento.</h3>
+            <h3>Não há produtos cadastrados no momento.</h3>
             <?php } ?>
-
-
-            <div class="col-5 mt-5">
-                <h2>Cadastrar Produto</h2>
-
-                <div class="font-weight-bold">
-                    <form action="" method="post" enctype="multipart/form-data">
-
-                        <div class="form-group">
-                            <label for="nomeProduto">Nome</label>
-                            <input type="text" class="form-control" name="nomeProduto" required/>
-                        </div>
-                        <div class="form-group">
-                            <label for="categProduto">Categoria</label>
-                            <select class="form-control" id="categProduto" name="categProduto" required>
-                                <option selected>Selecione uma categoria</option>
-                                <option value="surf">Surf</option>
-                                <option value="standuppadle">Stand Up Paddle</option>
-                                <option value="windsurf">Windsurf</option>
-                                <option value="kitesurf">Kitesurf</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="descProduto">Descrição</label>
-                            <textarea class="form-control noresize" name="descProduto" id="descProduto"
-                                placeholder="" required></textarea>
-                            <!-- <input type="text" class="form-control " name="descProduto"/> -->
-                        </div>
-
-                        <div class="form-group">
-                            <label for="qtdeProduto">Quantidade</label>
-                            <input type="number" class="form-control" name="qtdeProduto" required/>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="precoProduto">Preço</label>
-                            <input type="number" class="form-control" name="precoProduto" required/>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="imgProduto">Foto do produto</label>
-                            <input type="file" class="form-control-file" name="imgProduto" placeholder="" required/>
-                        </div>
-                        <div class="text-right">
-                            <button class="btn btn-primary">Enviar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
+
+        <section class="col-5 mt-5 bg-light p-5">
+            <h2 class='pb-3'>Cadastrar Produto</h2>
+
+            <div class="font-weight-bold">
+                <form action="" method="post" enctype="multipart/form-data">
+
+                    <div class="form-group">
+                        <label for="nomeProduto">Nome</label>
+                        <input type="text" class="form-control" name="nomeProduto" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categProduto">Categoria</label>
+                        <select class="form-control" id="categProduto" name="categProduto" required>
+                            <option selected>Selecione uma categoria</option>
+                            <option value="surf">Surf</option>
+                            <option value="standuppadle">Stand Up Paddle</option>
+                            <option value="windsurf">Windsurf</option>
+                            <option value="kitesurf">Kitesurf</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descProduto">Descrição</label>
+                        <textarea class="form-control noresize" name="descProduto" id="descProduto" placeholder="" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="qtdeProduto">Quantidade</label>
+                        <input type="number" class="form-control" name="qtdeProduto" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="precoProduto">Preço</label>
+                        <input type="number" class="form-control" name="precoProduto" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imgProduto">Foto do produto</label>
+                        <input type="file" class="form-control-file" name="imgProduto" placeholder="" required />
+                    </div>
+
+                    <div class="text-right">
+                        <button class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    
     </main>
 
 </body>
