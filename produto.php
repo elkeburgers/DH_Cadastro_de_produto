@@ -17,7 +17,7 @@
 
     <section class='container bg-light p-4 mt-5'>
 
-        <button class='mb-3'><a class="text-dark" href='cadastroProduto.php'>&larr;Voltar para a lista de produtos</a></button>
+        <button class='mb-3'><a class="text-dark" href='cadastroProduto.php'>&#8656; Voltar para a lista de produtos</a></button>
     
         <div class='row'>
             <?php 
@@ -33,7 +33,7 @@
             <div class='col-7'>
                 <div class="card-body">
 
-                    <h1 class="ml-3 card-title"><?php echo $produto['nome'] ?></h1>
+                    <h1 class="ml-3"><?php echo $produto['nome'] ?></h1>
 
                     <h6 class="ml-3">Categoria</h6>
                     <p class="ml-3 lead"><?php echo $produto['categ'] ?></p>

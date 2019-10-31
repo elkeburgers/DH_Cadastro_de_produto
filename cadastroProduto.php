@@ -56,13 +56,13 @@ if($_POST){
 
     <main class="container">
 
-        <div class="row p-4">
+        <section class="row p-4">
             <div class="col-7 mt-5">
                 <h1 class='pb-3'>Todos os produtos</h1>
             </div>
 
-            <table class="table">
-                <thead class='col-7'>
+            <table class="table col-7">
+                <thead class=''>
                     <tr>
                         <th scope='col'>Nome</th>
                         <th scope='col'>Categoria</th>
@@ -70,7 +70,7 @@ if($_POST){
                     </tr>
                 </thead>
 
-                <tbody class='col-7'>
+                <tbody class=''>
                     <?php if(isset($produtos) && $produtos != []) { ?>
                     <?php foreach($produtos as $produto){ ?>
                     <tr>
@@ -86,7 +86,7 @@ if($_POST){
             <?php }else{ ?>
             <h3>Não há produtos cadastrados no momento.</h3>
             <?php } ?>
-        </div>
+        </section>
 
         <section class="col-5 mt-5 bg-light p-5">
             <h2 class='pb-3'>Cadastrar Produto</h2>
@@ -96,7 +96,7 @@ if($_POST){
 
                     <div class="form-group">
                         <label for="nomeProduto">Nome</label>
-                        <input type="text" class="form-control" name="nomeProduto" required />
+                        <input type="text" class="form-control" name="nomeProduto" id='nomeProduto' maxlenght=70 required />
                     </div>
 
                     <div class="form-group">
@@ -112,7 +112,7 @@ if($_POST){
 
                     <div class="form-group">
                         <label for="descProduto">Descrição</label>
-                        <textarea class="form-control noresize" name="descProduto" id="descProduto" placeholder="" required></textarea>
+                        <textarea class="form-control noresize" name="descProduto" id="descProduto" placeholder=""  maxlenght=130 required></textarea>
                     </div>
 
                     <div class="form-group">
