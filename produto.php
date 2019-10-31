@@ -14,35 +14,41 @@
 <body>
 
     <?php include_once('variaveis.php'); ?>
+
     <section class='container bg-light p-4 mt-5'>
-        <button class='mb-3'><a href='cadastroProduto.php'>&larr;Voltar para a lista de produtos</a></button>
+
+        <button class='mb-3'><a class="text-dark" href='cadastroProduto.php'>&larr;Voltar para a lista de produtos</a></button>
+    
         <div class='row'>
             <?php 
             foreach($produtos as $produto){
                 if($_GET['nome'] == $produto['nome']){
             ?>
-            <div class='col-5'>
-                <img src="<?php echo $produto['img']; ?>" class='card-img' alt="Imagem do produto">
+    
+            <div class='col-5 mt-3'>
+                <!-- <img src="<?php echo $produto['img']; ?>" class='card-img' alt="Imagem do produto"> -->
+                <img src="<?php echo $produto['img']; ?>" class='col-8 width=100% ml-5' alt="Imagem do produto">
             </div>
+    
             <div class='col-7'>
                 <div class="card-body">
 
-                    <h1><?php echo $produto['nome'] ?></h1>
+                    <h1 class="ml-3 card-title"><?php echo $produto['nome'] ?></h1>
 
-                    <h6>Categoria</h6>
-                    <p><?php echo $produto['categ'] ?></p>
+                    <h6 class="ml-3">Categoria</h6>
+                    <p class="ml-3 lead"><?php echo $produto['categ'] ?></p>
 
-                    <h6>Descrição</h6>
-                    <p><?php echo $produto['desc'] ?></p>
+                    <h6 class="ml-3">Descrição</h6>
+                    <p class="ml-3 lead"><?php echo $produto['desc'] ?></p>
 
-                    <div class='d-flex justify-content-between'>
+                    <div class='d-flex justify-content-between col-7'>
                         <div>
                             <p>Quantidade em estoque</p>
                             <p><?php echo $produto['qtde'] ?></p>
                         </div>
                         <div>
-                            <p>Preço</p>
-                            <p><?php echo  $produto['preco'] ?></p>
+                            <p class=''>Preço</p>
+                            <p class='font-weight-bold'><?php echo  "R$".$produto['preco'] ?></p>
                         </div>
                     </div>
                 </div>
