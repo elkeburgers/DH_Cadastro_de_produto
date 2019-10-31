@@ -8,17 +8,21 @@ function cadastrarProduto($nomeProduto, $categProduto, $descProduto, $qtdeProdut
         $produtos[] = ["nome"=>$nomeProduto, "categ"=>$categProduto, "desc"=>$descProduto, "qtde"=>$qtdeProduto, "preco"=>$precoProduto, "img"=>$imgProduto];
         $json = json_encode($produtos);
         $sucesso = file_put_contents($nomeArquivo, $json);
+        if($sucesso){
+            return "Produto cadastrado com sucesso.";
+        } else{
+            return "Não foi possivel realizar o cadastro.";
+        }   
     }else{
         $produtos = [];
         $produtos[] = ["nome"=>$nomeProduto, "categ"=>$categProduto, "desc"=>$descProduto, "qtde"=>$qtdeProduto, "preco"=>$precoProduto, "img"=>$imgProduto];
         
         $json = json_encode($produtos);
-        
         $sucesso = file_put_contents($nomeArquivo, $json);
         if($sucesso){
-            return "Produto cadastrado com sucesso";
+            return "Produto cadastrado com sucesso.";
         } else{
-            return "Favor preencher todos os campos corretamente.";
+            return "Não foi possivel realizar o cadastro.";
         }   
     }
 }
@@ -57,7 +61,6 @@ if($_POST){
                 <h1>Todos os produtos</h1>
             </div>
 
-            <?php if(isset($produtos) && $produtos != []) { ?>
             <table class="table">
                 <thead>
                     <tr>
@@ -67,6 +70,7 @@ if($_POST){
                     </tr>
                 </thead>
                 <tbody>
+                    <?php if(isset($produtos) && $produtos != []) { ?>
                     <?php foreach($produtos as $produto){ ?>
                     <tr>
                         <td></td>
@@ -77,10 +81,9 @@ if($_POST){
                     <?php } ?>
                 </tbody>
             </table>
-            <?php }else{
-                echo "<h3>Não há produtos disponíveis no momento.</h3>";
-            }
-            ?>
+            <?php }else{ ?>
+                <h3>Não há produtos cadastrados no momento.</h3>
+            <?php } ?>
 
 
             <div class="col-5 mt-5">
