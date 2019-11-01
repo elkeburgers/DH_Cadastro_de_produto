@@ -38,6 +38,9 @@ if($_POST){
 
 ?>
 
+
+<!-- Pagina HTML -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,13 +59,15 @@ if($_POST){
 
     <main class="container">
 
-        <section class="row p-4">
-            <div class="col-7 mt-5">
+<!-- Pagina HTML, coluna 01 -->
+<section class="row">
+        <div>
+            <div class="mt-5">
                 <h1 class='pb-3'>Todos os produtos</h1>
             </div>
 
-            <table class="table col-7">
-                <thead class=''>
+            <table class="table">
+                <thead>
                     <tr>
                         <th scope='col'>Nome</th>
                         <th scope='col'>Categoria</th>
@@ -70,14 +75,14 @@ if($_POST){
                     </tr>
                 </thead>
 
-                <tbody class=''>
+                <tbody>
                     <?php if(isset($produtos) && $produtos != []) { ?>
                     <?php foreach($produtos as $produto){ ?>
                     <tr>
                         <td></td>
                         <td><a href='produto.php?nome=<?= $produto['nome']; ?>'><?= $produto['nome']; ?></td>
                         <td><?= $produto['categ']; ?></td>
-                        <td><?= "R$ ".$produto['preco']; ?></td>
+                        <td><?= "R$".$produto['preco']; ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -86,9 +91,12 @@ if($_POST){
             <?php }else{ ?>
             <h3>Não há produtos cadastrados no momento.</h3>
             <?php } ?>
-        </section>
+        </div>
 
-        <section class="col-5 mt-5 bg-light p-5">
+
+<!-- Pagina HTML, coluna 02 -->
+                <div>
+        <div class="mt-5 ml-5 bg-light p-5">
             <h2 class='pb-3'>Cadastrar Produto</h2>
 
             <div class="font-weight-bold">
@@ -104,7 +112,7 @@ if($_POST){
                         <select class="form-control" id="categProduto" name="categProduto" required>
                             <option selected>Selecione uma categoria</option>
                             <option value="surf">Surf</option>
-                            <option value="standuppadle">Stand Up Paddle</option>
+                            <option value="stand up padle">Stand Up Paddle</option>
                             <option value="windsurf">Windsurf</option>
                             <option value="kitesurf">Kitesurf</option>
                         </select>
@@ -134,6 +142,8 @@ if($_POST){
                         <button class="btn btn-primary">Enviar</button>
                     </div>
                 </form>
+            </div>
+            </div>
             </div>
         </section>
     
