@@ -79,7 +79,6 @@ if($_POST){
                     <?php if(isset($produtos) && $produtos != []) { ?>
                     <?php foreach($produtos as $produto){ ?>
                     <tr>
-                        <td></td>
                         <td><a href='produto.php?nome=<?= $produto['nome']; ?>'><?= $produto['nome']; ?></td>
                         <td><?= $produto['categ']; ?></td>
                         <td><?= "R$".$produto['preco']; ?></td>
