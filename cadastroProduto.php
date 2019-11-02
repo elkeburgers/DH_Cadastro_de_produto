@@ -5,17 +5,26 @@ function cadastrarProduto($nomeProduto, $categProduto, $descProduto, $qtdeProdut
     if (file_exists($nomeArquivo)){
         $arquivo = file_get_contents($nomeArquivo);
         $produtos = json_decode($arquivo, true);
-        $produtos[] = ["nome"=>$nomeProduto, "categ"=>$categProduto, "desc"=>$descProduto, "qtde"=>$qtdeProduto, "preco"=>$precoProduto, "img"=>$imgProduto];
+
+        if($produtos==[]){
+        $produtos[] = ["idProduto"=>1, "nome"=>$nomeProduto, "categ"=>$categProduto, "desc"=>$descProduto, "qtde"=>$qtdeProduto, "preco"=>$precoProduto, "img"=>$imgProduto];
+        }else{
+            $ultimoId = end($produtos);
+            $somaId = $ultimoId["idProduto"]+1;
+            $produtos[] = ["idProduto"=>$somaId, "nome"=>$nomeProduto, "categ"=>$categProduto, "desc"=>$descProduto, "qtde"=>$qtdeProduto, "preco"=>$precoProduto, "img"=>$imgProduto];
+        }
+        
         $json = json_encode($produtos);
         $sucesso = file_put_contents($nomeArquivo, $json);
         if($sucesso){
             return "";
         } else{
             return "Não foi possivel realizar o cadastro.";
-        }   
+        }
+        
     }else{
         $produtos = [];
-        $produtos[] = ["nome"=>$nomeProduto, "categ"=>$categProduto, "desc"=>$descProduto, "qtde"=>$qtdeProduto, "preco"=>$precoProduto, "img"=>$imgProduto];
+        $produtos[] = ["idProduto"=>1, "nome"=>$nomeProduto, "categ"=>$categProduto, "desc"=>$descProduto, "qtde"=>$qtdeProduto, "preco"=>$precoProduto, "img"=>$imgProduto];
         
         $json = json_encode($produtos);
         $sucesso = file_put_contents($nomeArquivo, $json);
@@ -80,7 +89,7 @@ if($_POST){
                         <?php if(isset($produtos) && $produtos != []) { ?>
                         <?php foreach($produtos as $produto){ ?>
                         <tr class='tabela'>
-                            <td><a href='produto.php?nome=<?= $produto['nome']; ?>'><?= $produto['nome']; ?></td>
+                            <td><a href='produto.php?idProduto=<?= $produto['idProduto']; ?>'><?= $produto['nome']; ?></td>
                             <td><?= $produto['categ']; ?></td>
                             <td><?= "R$".$produto['preco']; ?></td>
                         </tr>

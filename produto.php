@@ -20,13 +20,12 @@
         <button class='mb-3'><a class="text-dark" href='cadastroProduto.php'>&#8656; Voltar para a lista de produtos</a></button>
     
         <div class='row'>
-            <?php 
-            foreach($produtos as $produto){
-                if($_GET['nome'] == $produto['nome']){
+            <?php if(isset($produtos)&& $produtos !=[]){ ?>
+            <?php foreach($produtos as $produto){
+                if($_GET['idProduto'] == $produto['idProduto']){
             ?>
     
             <div class='col-5 mt-3'>
-                <!-- <img src="<?php echo $produto['img']; ?>" class='card-img' alt="Imagem do produto"> -->
                 <img src="<?php echo $produto['img']; ?>" class='col-8 width=100% ml-5' alt="Imagem do produto">
             </div>
     
@@ -55,6 +54,7 @@
             </div>
             <?php    
                 }
+            }
             }
             ?>
         </div>
