@@ -56,96 +56,101 @@ if($_POST){
 
 <body>
     <?php include_once("variaveis.php"); ?>
+    <?php include_once("config/validacao.php"); ?>
 
     <main class="container">
 
-<!-- Pagina HTML, coluna 01 -->
-<section class="row">
-        <div class="col-7">
-            <div class="mt-5">
-                <h1 class='pb-3'>Todos os produtos</h1>
+        <!-- Pagina HTML, coluna 01 -->
+        <section class="row">
+            <div class="col-6">
+                <div class="mt-5">
+                    <h1 class='pb-3'>Todos os produtos</h1>
+                </div>
+
+                <table class="table">
+                    <thead>
+                        <tr class='tabela'>
+                            <th scope='col'>Nome</th>
+                            <th scope='col'>Categoria</th>
+                            <th scope='col'>Preço</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php if(isset($produtos) && $produtos != []) { ?>
+                        <?php foreach($produtos as $produto){ ?>
+                        <tr class='tabela'>
+                            <td><a href='produto.php?nome=<?= $produto['nome']; ?>'><?= $produto['nome']; ?></td>
+                            <td><?= $produto['categ']; ?></td>
+                            <td><?= "R$".$produto['preco']; ?></td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+
+                <?php }else{ ?>
+                <h3>Não há produtos cadastrados no momento.</h3>
+                <!-- quando não há produtos, está com problema de estilo, ainda não consegui corrigir -->
+                <?php } ?>
             </div>
 
-            <table class="table">
-                <thead>
-                    <tr class='tabela'>
-                        <th scope='col'>Nome</th>
-                        <th scope='col'>Categoria</th>
-                        <th scope='col'>Preço</th>
-                    </tr>
-                </thead>
 
-                <tbody>
-                    <?php if(isset($produtos) && $produtos != []) { ?>
-                    <?php foreach($produtos as $produto){ ?>
-                    <tr class='tabela'>
-                        <td><a href='produto.php?nome=<?= $produto['nome']; ?>'><?= $produto['nome']; ?></td>
-                        <td><?= $produto['categ']; ?></td>
-                        <td><?= "R$".$produto['preco']; ?></td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
+            <!-- Pagina HTML, coluna 02 -->
+            <div class="col-6">
+                <div class="mt-5 ml-5 bg-light p-5">
+                    <h2 class='pb-3'>Cadastrar Produto</h2>
 
-            <?php }else{ ?>
-            <h3>Não há produtos cadastrados no momento.</h3>
-            <?php } ?>
-        </div>
+                    <div class="font-weight-bold">
+                        <form action="" method="post" enctype="multipart/form-data">
 
+                            <div class="form-group">
+                                <label for="nomeProduto">Nome</label>
+                                <input type="text" class="form-control" name="nomeProduto" id='nomeProduto' maxlenght=70
+                                    required />
+                            </div>
 
-<!-- Pagina HTML, coluna 02 -->
-                <div class="col-5">
-        <div class="mt-5 ml-5 bg-light p-5">
-            <h2 class='pb-3'>Cadastrar Produto</h2>
+                            <div class="form-group">
+                                <label for="categProduto">Categoria</label>
+                                <?php if(isset($categorias)&& $categorias !=[]){ ?>
+                                <select class="form-control" id="categProduto" name="categProduto" required>
+                                    <?php foreach($categorias as $categoria){ ?>
+                                    <option value="<?php echo $categoria ?>"><?php echo $categoria?></option>
+                                    <?php } ?>
+                                    <?php } ?>
+                                </select>
+                            </div>
 
-            <div class="font-weight-bold">
-                <form action="" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="descProduto">Descrição</label>
+                                <textarea class="form-control noresize" name="descProduto" id="descProduto"
+                                    placeholder="" maxlenght=130 required></textarea>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="nomeProduto">Nome</label>
-                        <input type="text" class="form-control" name="nomeProduto" id='nomeProduto' maxlenght=70 required />
+                            <div class="form-group">
+                                <label for="qtdeProduto">Quantidade</label>
+                                <input type="number" class="form-control" name="qtdeProduto" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="precoProduto">Preço</label>
+                                <input type="number" class="form-control" name="precoProduto" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="imgProduto">Foto do produto</label>
+                                <input type="file" class="form-control-file" name="imgProduto" placeholder=""
+                                    required />
+                            </div>
+
+                            <div class="text-right">
+                                <button class="btn btn-primary">Enviar</button>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="form-group">
-                        <label for="categProduto">Categoria</label>
-                        <select class="form-control" id="categProduto" name="categProduto" required>
-                            <option selected>Selecione uma categoria</option>
-                            <option value="surf">Surf</option>
-                            <option value="stand up padle">Stand Up Paddle</option>
-                            <option value="windsurf">Windsurf</option>
-                            <option value="kitesurf">Kitesurf</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="descProduto">Descrição</label>
-                        <textarea class="form-control noresize" name="descProduto" id="descProduto" placeholder=""  maxlenght=130 required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="qtdeProduto">Quantidade</label>
-                        <input type="number" class="form-control" name="qtdeProduto" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="precoProduto">Preço</label>
-                        <input type="number" class="form-control" name="precoProduto" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="imgProduto">Foto do produto</label>
-                        <input type="file" class="form-control-file" name="imgProduto" placeholder="" required />
-                    </div>
-
-                    <div class="text-right">
-                        <button class="btn btn-primary">Enviar</button>
-                    </div>
-                </form>
-            </div>
-            </div>
+                </div>
             </div>
         </section>
-    
+
     </main>
 
 </body>
