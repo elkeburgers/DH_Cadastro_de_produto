@@ -89,7 +89,11 @@ if($_POST){
                         <?php if(isset($produtos) && $produtos != []) { ?>
                         <?php foreach($produtos as $produto){ ?>
                         <tr class='tabela'>
+                            <?php if($produto["nome"] != []){ ?>
                             <td><a href='produto.php?idProduto=<?= $produto['idProduto']; ?>'><?= $produto['nome']; ?></td>
+                            <?php } else{ ?>
+                                <td><a href='produto.php?idProduto=<?= $produto['idProduto']; ?>'><?= $produto['categ']; ?></td>
+                            <?php } ?>
                             <td><?= $produto['categ']; ?></td>
                             <td><?= "R$".$produto['preco']; ?></td>
                         </tr>
