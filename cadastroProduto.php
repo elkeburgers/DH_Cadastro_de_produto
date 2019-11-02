@@ -50,7 +50,7 @@ if($_POST){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="./css/style.css" rel=stylesheet>
+    <link href="css/style.css" rel=stylesheet>
     <title>Cadastrar produto</title>
 </head>
 
@@ -61,14 +61,14 @@ if($_POST){
 
 <!-- Pagina HTML, coluna 01 -->
 <section class="row">
-        <div>
+        <div class="col-7">
             <div class="mt-5">
                 <h1 class='pb-3'>Todos os produtos</h1>
             </div>
 
             <table class="table">
                 <thead>
-                    <tr>
+                    <tr class='tabela'>
                         <th scope='col'>Nome</th>
                         <th scope='col'>Categoria</th>
                         <th scope='col'>Preço</th>
@@ -78,7 +78,7 @@ if($_POST){
                 <tbody>
                     <?php if(isset($produtos) && $produtos != []) { ?>
                     <?php foreach($produtos as $produto){ ?>
-                    <tr>
+                    <tr class='tabela'>
                         <td><a href='produto.php?nome=<?= $produto['nome']; ?>'><?= $produto['nome']; ?></td>
                         <td><?= $produto['categ']; ?></td>
                         <td><?= "R$".$produto['preco']; ?></td>
@@ -94,7 +94,7 @@ if($_POST){
 
 
 <!-- Pagina HTML, coluna 02 -->
-                <div>
+                <div class="col-5">
         <div class="mt-5 ml-5 bg-light p-5">
             <h2 class='pb-3'>Cadastrar Produto</h2>
 
